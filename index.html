@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Egg Simulator</title>
+</head>
+<body>
+    <header>
+        <h1>Яйко</h1>
+        <p>Баланс: <span id="money">200</span></p>
+    </header>
+    <div class="egg">
+        <h2>Стандартне яйце [20]</h2>
+        <div class="img-container">
+            <img id="egg-img" src="src/pics/dragonEgg.png" alt="EGG">
+        </div>
+        <div id="info">
+            <p id="PetName"></p>
+            <p id="Rarity"></p>
+            <p id="Price"></p>
+        </div>
+    </div>
+
+    <div class="inventory-container">
+    <h1>Інвентар</h1>
+    <div id="inventory">
+
+    </div>
+    <p>Нажміть на цінник щоб продати пета</p>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
