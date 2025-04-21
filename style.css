@@ -28,6 +28,42 @@ header > :last-child > span {
     color: #00d800;
 }
 
+#egg-select{
+    cursor: pointer;
+    margin-left: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+    border-radius: 10px;
+    background-color: #ffffff42;
+}
+
+.egg-selector {
+    display: none;
+    position: fixed; 
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 999; 
+    pointer-events: auto; 
+}
+
+.egg-selector label,
+.egg-selector select {
+    font-size: 16px;
+}
+.egg-selector label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
 .egg{
     margin: 25px 0px;
     display: flex;
@@ -58,15 +94,20 @@ header > :last-child > span {
 }
 
 #info{
+    padding: 5px 10px;
     text-align: center;
     width: 200px;
     font-size: 18px;
     margin-top: 15px;
-    background-color: #464646;
+    background-color: #464646a8;
     color: white;
     border-radius: 10px;
-    padding: 5px 10px;
     display: none;
+}
+
+#info > p{
+    margin: 0;
+    padding: 2px 0px;
 }
 
 .inventory-container{
@@ -74,15 +115,21 @@ header > :last-child > span {
     color: #E4E6C3;
     min-height: 100px;
 }
-.inventory-container > h1, p{
+.inventory-container > h1{
     text-align: center;
-    padding: 10px 0;
+    padding: 10px 0 5px 0;
 }
+.inventory-container > p{
+    text-align: center;
+    padding: 0 0 5px 0;
+}
+
 #inventory{
+    margin-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    background-color: #ffffff3d;
+    background-color: #ffffff11;
 }
 .inventory-item{
     display: flex;
@@ -118,4 +165,43 @@ header > :last-child > span {
     height: 100%;
     object-fit: cover;
     image-rendering: pixelated;
+}
+
+.star {
+    cursor: pointer;
+    z-index: 999;
+    position: absolute; 
+    top: 5px;
+    right: 5px; 
+    width: 15px; 
+    height: 15px; 
+    transition: transform 0.2s ease;
+}
+.star:hover{
+    transform: scale(1.5);
+}
+
+
+.filter{
+    margin: 10px 0;
+    padding: 5px 0;
+    background-color: rgba(0, 0, 0, 0.089);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.SellAll{
+    cursor: pointer;
+    color: firebrick;
+    border-style:solid;
+    background: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-color: firebrick;
+    transition: all 0.2s ease;
+}
+
+.SellAll:hover{
+    color: #c72e2e;
+    border-color: #c72e2e;
 }
