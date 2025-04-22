@@ -1,0 +1,64 @@
+#egg-select{
+    cursor: pointer;
+    margin-left: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+    border-radius: 10px;
+    background-color: #ffffff42;
+}
+
+.egg-selector {
+    display: none;
+    position: fixed; 
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 999; 
+    pointer-events: auto; 
+}
+
+.egg-selector label,
+.egg-selector select {
+    font-size: 16px;
+}
+.egg-selector label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+
+#egg-info {
+    cursor: pointer;
+    z-index: 998;
+    position: absolute; 
+    top: 5px;
+    right: 5px; 
+    width: 25px; 
+    height: 25px; 
+}
+#pets-list{
+    color: white;
+    display: none;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.616);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 999; 
+    pointer-events: auto; 
+}
+
+.pets-list-item{
+    margin-bottom: 5px;
+}

@@ -1,0 +1,94 @@
+.inventory-container{
+    background-color: #222725;
+    color: #E4E6C3;
+    min-height: 100px;
+}
+.inventory-container > h1{
+    text-align: center;
+    padding: 10px 0 5px 0;
+}
+.inventory-container > p{
+    text-align: center;
+    padding: 0 0 5px 0;
+}
+
+#inventory{
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    background-color: #ffffff11;
+}
+.inventory-item{
+    display: flex;
+    flex-direction: column; /* Розміщує елементи по вертикалі */
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-size: 56px 56px; /* Розмір пікселя */
+
+    margin: 10px;
+    padding: 5px;
+    height: 70px;
+    position: relative;
+    width: 70px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.inventory-item > p{
+    cursor: pointer;
+    z-index: 1;
+    background-color: #22272577;
+    border-radius: 2px;
+    padding: 1px 3px;
+    transition: all 0.2s ease-in-out;
+}
+.inventory-item > p:hover{
+    background-color: #c90f0fd3;
+}
+.pixelated-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+
+.star {
+    cursor: pointer;
+    z-index: 999;
+    position: absolute; 
+    top: 5px;
+    right: 5px; 
+    width: 15px; 
+    height: 15px; 
+    transition: transform 0.2s ease;
+}
+.star:hover{
+    transform: scale(1.5);
+}
+
+.filter{
+    margin: 10px 0;
+    padding: 5px 0;
+    background-color: rgba(0, 0, 0, 0.089);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.SellAll{
+    cursor: pointer;
+    color: firebrick;
+    border-style:solid;
+    background: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-color: firebrick;
+    transition: all 0.2s ease;
+}
+
+.SellAll:hover{
+    color: #c72e2e;
+    border-color: #c72e2e;
+}

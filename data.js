@@ -8,7 +8,8 @@ export const StandartEggPets = [
     { name: 'Водний Кіт', chance: 15, rarity: 'Епічний', price: 25, src: './src/pics/StandartEgg/WaterCat.png' },
     { name: 'Лавовий Кіт', chance: 10, rarity: 'Епічний', price: 50, src: './src/pics/StandartEgg/LavaCat.png' },
     { name: 'Космічний Кіт', chance: 4.5, rarity: 'Легендарний', price: 100, src: './src/pics/StandartEgg/CosmoCat.png' },
-    { name: 'Божествений Кіт', chance: 0.5, rarity: 'Міфічний', price: 489, src: './src/pics/StandartEgg/HolyCat.png' }
+    { name: 'Божествений Кіт', chance: 0.45, rarity: 'Міфічний', price: 489, src: './src/pics/StandartEgg/HolyCat.png' },
+    { name: 'Заражений Кіт', chance: 0.05, rarity: 'Міфічний', price: 2990, src: './src/pics/StandartEgg/InfectedCat.png' }
 ];
 export const SlimeEggPets = [
     { name: 'Звичайний Слизень', chance: 30, rarity: 'Стандартний', price: 15, src: './src/pics/SlimeEgg/DefSlime.png' },

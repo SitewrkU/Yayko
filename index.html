@@ -6,7 +6,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/inventory.css">
+    <link rel="stylesheet" href="src/styles/forms.css">
     <title>Egg Simulator</title>
 </head>
 <body>
@@ -14,6 +16,7 @@
         <label for="eggSelect">Вибери яйце:</label>
         <select id="eggSelect"></select>
     </div>
+    <div id="pets-list"></div>
 
     
     <header>
@@ -24,6 +27,7 @@
     <div class="egg">
         <h2 id="egg-name">Стандартне яйце [20]</h2>
         <div class="img-container">
+            <img src="src/pics/icons/info.png" alt="info" id="egg-info">
             <img id="egg-img" src="src/pics/dragonEgg.png" alt="EGG">
         </div>
         <div id="info">

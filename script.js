@@ -2,8 +2,10 @@ import * as data from './data.js';
 
 const egg = document.getElementById("egg-img");
 const eggSelect = document.getElementById('eggSelect');
-const toggleBtn = document.getElementById('egg-select');
+const toggleEggSelect = document.getElementById('egg-select');
 const eggSelector = document.querySelector('.egg-selector');
+const petsList = document.getElementById('pets-list');
+const petsListBtn = document.getElementById('egg-info');
 
 const money_span = document.getElementById("money");
 const info = document.getElementById("info");
@@ -43,6 +45,7 @@ eggSelect.addEventListener('change', () => {
     const selectedIndex = eggSelect.value;
     const selectedEgg = data.EggTypes[selectedIndex];
     eggSelector.style.display = 'none';
+    petsList.style.display = 'none';
 
     EggType = data[selectedEgg.constName];
     EGG_PRICE = selectedEgg.price;
@@ -51,10 +54,23 @@ eggSelect.addEventListener('change', () => {
     eggName.textContent = selectedEgg.name;
 });
 
-toggleBtn.addEventListener('click', () => {
+toggleEggSelect.addEventListener('click', () => {
     eggSelector.style.display = eggSelector.style.display === 'none' || eggSelector.style.display === '' 
         ? 'block' 
         : 'none';
+});
+
+
+
+petsListBtn.addEventListener('click', () => {
+    const visible = petsList.style.display === 'block';
+    petsList.style.display = visible ? 'none' : 'block';
+  
+    if (!visible) {
+        petsList.innerHTML = EggType.map(pet =>
+          `<div class="pets-list-item">${pet.name} — [${pet.chance}%]</div>`
+        ).join('');
+    }
 });
 
 
@@ -120,7 +136,12 @@ function OpenEgg(){
             info.style.display = 'block';
             info_name.textContent = pet.name;
             info_rarity.textContent = pet.rarity;
-            info_price.textContent = `Ціна: ${pet.price}`;
+            info_price.textContent = `Ціна: ${pet.price}$`;
+
+            if(pet.rarity === "Міфічний"){
+                money += pet.price * 0.10;
+                money_span.textContent = money;
+            }
 
             inventory.push({ ...pet });
             updateInventory();
