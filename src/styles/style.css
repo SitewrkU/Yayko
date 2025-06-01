@@ -20,12 +20,67 @@ header{
     color:white;
     padding: 15px 20px;
 }
-header > :last-child {
-    margin-left: auto;
+
+.balance {
     font-size: 20px;
 }
-header > :last-child > span {
-    color: #00d800;
+.balance > span {
+    color: #00a100;
+}
+
+#settings{
+    margin-left: auto;
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    padding: 6px;
+    border-radius: 10px;
+    background-color: #d8d8d8;
+}
+
+#settings-menu{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+
+
+    max-width: 380px;
+    width: calc(100% - 2rem);
+    /* margin: 0 50px; */
+    background-color: #292828e8;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    color: white;
+
+    justify-content: center;
+    flex-direction: column;
+}
+
+#settings-menu > h2{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.defBtn{
+    margin: 5px 0;
+    cursor: pointer;
+    padding: 10px;
+    background:none;
+    color: #eeeeee;
+    border: #fdfdfd 2px solid;
+    border-radius: 5px;
+    font-size: 18px;
+    border-style: solid;
+}
+
+#clear-data{
+    margin-top: 25px;
+    color: #fd4646;
+    border: #d32f2f 2px solid;
 }
 
 .egg{
@@ -58,6 +113,32 @@ header > :last-child > span {
     opacity: 0.8;
 }
 
+#egg-img.Mythic {
+    animation: scaleUpLong 1.8s ease-in-out;
+}
+
+@keyframes scaleUpLong {
+    0% {
+        transform: scale(1) rotateZ(20deg);
+    }
+    25% {
+        transform: scale(1.1) rotateZ(-20deg);
+    }
+    50% {
+        transform: scale(1.2) rotateZ(20deg);
+    }
+    75% {
+        transform: scale(1.3) rotateZ(-20deg);
+    }
+    85% {
+        transform: scale(1.4) rotateZ(20deg);
+    }
+    100% {
+        transform: scale(1) rotateZ(0);
+    }
+}
+
+
 #info{
     padding: 5px 10px;
     text-align: center;
@@ -73,4 +154,12 @@ header > :last-child > span {
 #info > p{
     margin: 0;
     padding: 2px 0px;
+}
+
+
+@media only screen and (max-width: 380px) {
+    #egg-img{
+        width: 230px;
+        height: 230px;
+    }
 }

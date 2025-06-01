@@ -1,4 +1,6 @@
 import * as data from './data.js';
+import * as utils from './utils.js';
+import { saveGame, loadGame } from './storage.js';
 
 const egg = document.getElementById("egg-img");
 const eggSelect = document.getElementById('eggSelect');
@@ -16,7 +18,15 @@ document.querySelector('.SellAll').addEventListener('click', SellInventory);
 
 let EGG_PIC = 'src/pics/dragonEgg.png';
 let EGG_PRICE = 20;
-const CLICKS_TO_OPEN = 4;
+
+export let CLICKS_TO_OPEN = 4;
+export function setClicksToOpen(value) {
+  CLICKS_TO_OPEN = value;
+}
+export function getClicksToOpen() {
+  return CLICKS_TO_OPEN;
+}
+
 const ANIMATION_DURATION_COMMON = 1000;
 const ANIMATION_DURATION_RARE = 3000;
 
@@ -31,8 +41,7 @@ let inventory = [];
 let EggType = data.StandartEggPets;
 
 
-
-
+//OPTIONS FOR EGG SELECT
 data.EggTypes.forEach((egg, index) => {
     const option = document.createElement('option');
     option.value = index; 
@@ -40,6 +49,8 @@ data.EggTypes.forEach((egg, index) => {
     eggSelect.appendChild(option);
 });
 
+
+//EGG SELECT
 eggSelect.addEventListener('change', () => {
     const eggName = document.getElementById("egg-name");
     const selectedIndex = eggSelect.value;
@@ -54,6 +65,7 @@ eggSelect.addEventListener('change', () => {
     eggName.textContent = selectedEgg.name;
 });
 
+//OPEN EGG SELECT
 toggleEggSelect.addEventListener('click', () => {
     eggSelector.style.display = eggSelector.style.display === 'none' || eggSelector.style.display === '' 
         ? 'block' 
@@ -61,7 +73,7 @@ toggleEggSelect.addEventListener('click', () => {
 });
 
 
-
+//LIST OF PETS AND CHANCES
 petsListBtn.addEventListener('click', () => {
     const visible = petsList.style.display === 'block';
     petsList.style.display = visible ? 'none' : 'block';
@@ -75,7 +87,7 @@ petsListBtn.addEventListener('click', () => {
 
 
 
-
+//OPEN EGG
 egg.addEventListener("click", () => {
     if(clickable){
         let rotation = rotate === 'right' ? 'rotateZ(20deg)' : 'rotateZ(-20deg)';
@@ -83,6 +95,8 @@ egg.addEventListener("click", () => {
     
         egg.style.transform = `scale(1.1) ${rotation}`;
         egg.style.opacity = '0.6';
+
+        
     
         setTimeout(() => {
             egg.style.transform = 'none';
@@ -95,7 +109,7 @@ egg.addEventListener("click", () => {
     if(money >= EGG_PRICE){
         if(clicks === CLICKS_TO_OPEN){
             money -= EGG_PRICE;
-            money_span.textContent = money;
+            money_span.textContent = utils.formatMoney(money);
             clicks = 0;
             clickable = false;
 
@@ -123,6 +137,7 @@ egg.addEventListener("click", () => {
 });
 
 
+//OPEN EGG
 function OpenEgg(){
     const random = Math.random() * 100;
     let sum = 0;
@@ -131,16 +146,33 @@ function OpenEgg(){
         sum += pet.chance;
         if (random <= sum) {
             selectedPet = pet;
-            egg.src = pet.src;
 
-            info.style.display = 'block';
-            info_name.textContent = pet.name;
-            info_rarity.textContent = pet.rarity;
-            info_price.textContent = `Ціна: ${pet.price}$`;
 
             if(pet.rarity === "Міфічний"){
                 money += pet.price * 0.10;
-                money_span.textContent = money;
+                money_span.textContent = utils.formatMoney(money);
+
+                egg.classList.add('Mythic');
+
+                setTimeout(() => {
+                    egg.src = pet.src;
+                }, 1350);
+
+                egg.addEventListener('animationend', () => {
+                    egg.classList.remove('Mythic');
+                    
+                    info.style.display = 'block';
+                    info_name.textContent = pet.name;
+                    info_rarity.textContent = pet.rarity;
+                    info_price.textContent = `Ціна: ${pet.price}$`;
+                });
+            }else{
+                egg.src = pet.src;
+                
+                info.style.display = 'block';
+                info_name.textContent = pet.name;
+                info_rarity.textContent = pet.rarity;
+                info_price.textContent = `Ціна: ${pet.price}$`;
             }
 
             inventory.push({ ...pet });
@@ -179,15 +211,15 @@ function updateInventory() {
         `;
 
         if(item.rarity === "Легендарний"){
-            PetItem.style.borderColor = 'yellow';
+            PetItem.style.borderColor = '#621ca3';
         }else if(item.rarity === "Міфічний"){
-            PetItem.style.borderColor = '#4B0082';
+            PetItem.style.borderColor = '#f74aa4';
         }
     });
 
     let FullPrice = 0;
     inventory.forEach(item => {
-        FullPrice = item.price + FullPrice;
+        FullPrice += item.price;
     }); 
     invPrice.textContent = FullPrice;
 }
@@ -199,7 +231,7 @@ function SellPet(button) {
     const index = allParents.indexOf(parent);
 
     money += inventory[index].price;
-    money_span.textContent = money;
+    money_span.textContent = utils.formatMoney(money);
 
     inventory.splice(index, 1);
     updateInventory();
@@ -223,8 +255,6 @@ function FavouritePet(star) {
 }
 window.FavouritePet = FavouritePet;
 
-
-
 function SellInventory() {
     const allParents = Array.from(document.querySelectorAll('.inventory-item'));
     const sellIndices = [];
@@ -236,13 +266,29 @@ function SellInventory() {
         }
     });
 
-    // Продаємо з кінця, щоб не зламати індекси при splice
+    // Продає з кінця, щоб не зламати індекси при splice
     for (let i = sellIndices.length - 1; i >= 0; i--) {
         const index = sellIndices[i];
         money += inventory[index].price;
         inventory.splice(index, 1);
     }
 
-    money_span.textContent = money;
+    money_span.textContent = utils.formatMoney(money);
     updateInventory();
 }
+
+
+//LOAD/SAVE STORAGE----------------------------------------
+const loaded = loadGame();
+if (loaded) {
+    money = loaded.money;
+    inventory = loaded.inventory;
+    updateInventory();
+    money_span.textContent = utils.formatMoney(money);
+}
+
+// Save every 20s
+setInterval(() => {
+    saveGame(money, inventory);
+    console.log("Game Saved!");
+}, 20000);
