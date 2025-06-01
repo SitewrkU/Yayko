@@ -12,23 +12,17 @@
     <title>Egg Simulator</title>
 </head>
 <body>
-    <div class="egg-selector">
-        <label for="eggSelect">Вибери яйце:</label>
-        <select id="eggSelect"></select>
-    </div>
-    <div id="pets-list"></div>
-
-    
     <header>
         <h1>Яйко</h1>
         <img src="src/pics/icons/eggs.png" alt="Eggs" id="egg-select">
-        <p>Баланс: <span id="money">200</span>$</p>
+        <img src="src/pics/icons/settings.png" alt="settings" id="settings">
     </header>
     <div class="egg">
-        <h2 id="egg-name">Стандартне яйце [20]</h2>
+        <p class="balance">Баланс: <span id="money">200</span>$</p>
+        <h2 id="egg-name">Стандартне яйце [20$]</h2>
         <div class="img-container">
             <img src="src/pics/icons/info.png" alt="info" id="egg-info">
-            <img id="egg-img" src="src/pics/dragonEgg.png" alt="EGG">
+            <img id="egg-img" src="src/pics/dragonEgg.png" alt="EGG" draggable="false">
         </div>
         <div id="info">
             <p id="PetName"></p>
@@ -51,6 +45,20 @@
         <p>Виберіть зірку щоб зробити пета обраним (Обрані пети НЕ продаються)</p>
     </div>
 
+    <div class="egg-selector">
+        <label for="eggSelect">Вибери яйце:</label>
+        <select id="eggSelect"></select>
+    </div>
+    <div id="pets-list"></div>
+    <div id="settings-menu">
+        <h2>Налаштування</h2>
+        <button id="fast-open" class="defBtn">Швидке відкриття [off]</button>
+        <button id="lucky" class="defBtn">Мені повезе!</button>
+        <button id="clear-data" class="defBtn">Очистити данні</button>
+    </div>
+
     <script type="module" src="script.js"></script>
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="storage.js"></script>
 </body>
 </html>
